@@ -1,4 +1,9 @@
 {
+  "index.ignored_file_patterns" : [
+    ".build\/repositories",
+    ".build\/arm64*"
+  ],
+  "index.use_scm_ignored_files" : false,
   "workspace.art_style" : 1,
   "workspace.color" : 0,
   "workspace.name" : "Padraig's Godot Helpers"

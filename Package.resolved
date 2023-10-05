@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "swiftgodot",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/PadraigK/SwiftGodot",
+      "state" : {
+        "branch" : "main",
+        "revision" : "dbceb23e17573dec48c581ea5962230f001400d3"
+      }
+    },
+    {
       "identity" : "xmlcoder",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/CoreOffice/XMLCoder",
