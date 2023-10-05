@@ -71,6 +71,10 @@ extension Int: VariantConvertible {
     public func toVariant() -> Variant { .init(self) }
 }
 
+extension Bool: VariantConvertible {
+    public func toVariant() -> Variant { .init(self) }
+}
+
 extension Never: VariantConvertible {
     public func toVariant() -> Variant { .init(nil) }
 }
