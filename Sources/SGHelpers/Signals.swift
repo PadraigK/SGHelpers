@@ -278,6 +278,10 @@ extension Bool: VariantConvertible {
     public func toVariant() -> Variant { .init(self) }
 }
 
-extension Never: VariantConvertible {
-    public func toVariant() -> Variant { .init(nil) }
+extension Double: VariantConvertible {
+    public func toVariant() -> Variant { .init(self) }
+}
+
+extension Vector2: VariantConvertible {
+    public func toVariant() -> Variant { .init(self) }
 }
