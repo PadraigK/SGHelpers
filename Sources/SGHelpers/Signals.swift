@@ -131,6 +131,51 @@ public struct SignalWith3Arguments<
     }
 }
 
+public struct SignalWith4Arguments<
+    Argument1: VariantConvertible,
+    Argument2: VariantConvertible,
+    Argument3: VariantConvertible,
+    Argument4: VariantConvertible
+> {
+    let name: StringName
+    let argument1Type: Argument1.Type
+    let argument2Type: Argument2.Type
+    let argument3Type: Argument3.Type
+    let argument4Type: Argument4.Type
+
+    public init<Source: SwiftGodot.Object>(
+        _ signalName: String,
+        classType: Source.Type
+    ) {
+        name = StringName(signalName)
+        argument1Type = Argument1.self
+        argument2Type = Argument2.self
+        argument3Type = Argument3.self
+        argument4Type = Argument4.self
+        let className = String(describing: classType)
+
+        let arguments = [argument1Type, argument2Type, argument3Type, argument4Type]
+            .map {
+                String(describing: $0)
+            }
+            .map {
+                PropInfo(
+                    propertyType: .object,
+                    propertyName: StringName($0),
+                    className: StringName(className),
+                    hint: .objectId,
+                    hintStr: GString($0),
+                    usage: .default
+                )
+            }
+
+        ClassInfo<Source>(name: StringName(className)).registerSignal(
+            name: name,
+            arguments: arguments
+        )
+    }
+}
+
 public extension Object {
     @discardableResult
     func emit(signal: SignalWithNoArguments) -> GodotError {
@@ -180,6 +225,32 @@ public extension Object {
     @discardableResult
     func connect(
         signal: SignalWith3Arguments<some Any, some Any, some Any>,
+        to target: some Object,
+        method: String
+    ) -> GodotError {
+        connect(signal: signal.name, callable: .init(object: target, method: .init(method)))
+    }
+
+    @discardableResult
+    func emit<A: VariantConvertible, B: VariantConvertible, C: VariantConvertible, D: VariantConvertible>(
+        signal: SignalWith4Arguments<A, B, C, D>,
+        _ argument1: A,
+        _ argument2: B,
+        _ argument3: C,
+        _ argument4: D
+    ) -> GodotError {
+        emitSignal(
+            signal.name,
+            argument1.toVariant(),
+            argument2.toVariant(),
+            argument3.toVariant(),
+            argument4.toVariant()
+        )
+    }
+
+    @discardableResult
+    func connect(
+        signal: SignalWith4Arguments<some Any, some Any, some Any, some Any>,
         to target: some Object,
         method: String
     ) -> GodotError {
