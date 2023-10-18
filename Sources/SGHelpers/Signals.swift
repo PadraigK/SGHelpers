@@ -257,31 +257,3 @@ public extension Object {
         connect(signal: signal.name, callable: .init(object: target, method: .init(method)))
     }
 }
-
-public protocol VariantConvertible {
-    func toVariant() -> Variant
-}
-
-extension Object: VariantConvertible {
-    public func toVariant() -> Variant { .init(self) }
-}
-
-extension String: VariantConvertible {
-    public func toVariant() -> Variant { .init(self) }
-}
-
-extension Int: VariantConvertible {
-    public func toVariant() -> Variant { .init(self) }
-}
-
-extension Bool: VariantConvertible {
-    public func toVariant() -> Variant { .init(self) }
-}
-
-extension Double: VariantConvertible {
-    public func toVariant() -> Variant { .init(self) }
-}
-
-extension Vector2: VariantConvertible {
-    public func toVariant() -> Variant { .init(self) }
-}
