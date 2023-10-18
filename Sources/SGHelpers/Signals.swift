@@ -17,32 +17,38 @@ public struct SignalWithNoArguments {
     }
 }
 
+extension PropInfo {
+    init(
+        propertyType: (some VariantConvertible).Type,
+        propertyName: StringName
+    ) {
+        self.init(
+            propertyType: propertyType.gType,
+            propertyName: propertyName,
+            className: propertyType.gType == .object ? .init(String(describing: propertyType.self)) : .init(""),
+            hint: .none,
+            hintStr: "",
+            usage: .default
+        )
+    }
+}
+
 public struct SignalWith1Argument<Argument: VariantConvertible> {
     let name: StringName
-    let argumentType: Argument.Type?
+    let argumentType: Argument.Type
 
     public init<Source: SwiftGodot.Object>(
         _ signalName: String,
+        argumentName: String? = nil,
         classType: Source.Type
     ) {
         name = StringName(signalName)
         argumentType = Argument.self
         let className = String(describing: classType)
 
-        let arguments = [argumentType]
-            .map {
-                String(describing: $0)
-            }
-            .map {
-                PropInfo(
-                    propertyType: .object,
-                    propertyName: StringName($0),
-                    className: StringName(className),
-                    hint: .objectId,
-                    hintStr: GString($0),
-                    usage: .default
-                )
-            }
+        let arguments = [
+            PropInfo(propertyType: argumentType, propertyName: .init(argumentName ?? "arg1")),
+        ]
 
         ClassInfo<Source>(name: StringName(className)).registerSignal(
             name: name,
@@ -61,26 +67,19 @@ public struct SignalWith2Arguments<
 
     public init<Source: SwiftGodot.Object>(
         _ signalName: String,
+        argument1Name: String? = nil,
+        argument2Name: String? = nil,
         classType: Source.Type
     ) {
         name = StringName(signalName)
         argument1Type = Argument1.self
         argument2Type = Argument2.self
         let className = String(describing: classType)
-        let arguments = [argument1Type, argument2Type]
-            .map {
-                String(describing: $0)
-            }
-            .map {
-                PropInfo(
-                    propertyType: .object,
-                    propertyName: StringName($0),
-                    className: StringName(className),
-                    hint: .objectId,
-                    hintStr: GString($0),
-                    usage: .default
-                )
-            }
+
+        let arguments = [
+            PropInfo(propertyType: argument1Type, propertyName: .init(argument1Name ?? "arg1")),
+            PropInfo(propertyType: argument2Type, propertyName: .init(argument2Name ?? "arg2")),
+        ]
 
         ClassInfo<Source>(name: StringName(className)).registerSignal(
             name: name,
@@ -101,6 +100,9 @@ public struct SignalWith3Arguments<
 
     public init<Source: SwiftGodot.Object>(
         _ signalName: String,
+        argument1Name: String? = nil,
+        argument2Name: String? = nil,
+        argument3Name: String? = nil,
         classType: Source.Type
     ) {
         name = StringName(signalName)
@@ -109,20 +111,11 @@ public struct SignalWith3Arguments<
         argument3Type = Argument3.self
         let className = String(describing: classType)
 
-        let arguments = [argument1Type, argument2Type, argument3Type]
-            .map {
-                String(describing: $0)
-            }
-            .map {
-                PropInfo(
-                    propertyType: .object,
-                    propertyName: StringName($0),
-                    className: StringName(className),
-                    hint: .objectId,
-                    hintStr: GString($0),
-                    usage: .default
-                )
-            }
+        let arguments = [
+            PropInfo(propertyType: argument1Type, propertyName: .init(argument1Name ?? "arg1")),
+            PropInfo(propertyType: argument2Type, propertyName: .init(argument2Name ?? "arg2")),
+            PropInfo(propertyType: argument3Type, propertyName: .init(argument3Name ?? "arg3")),
+        ]
 
         ClassInfo<Source>(name: StringName(className)).registerSignal(
             name: name,
@@ -145,6 +138,10 @@ public struct SignalWith4Arguments<
 
     public init<Source: SwiftGodot.Object>(
         _ signalName: String,
+        argument1Name: String? = nil,
+        argument2Name: String? = nil,
+        argument3Name: String? = nil,
+        argument4Name: String? = nil,
         classType: Source.Type
     ) {
         name = StringName(signalName)
@@ -154,20 +151,12 @@ public struct SignalWith4Arguments<
         argument4Type = Argument4.self
         let className = String(describing: classType)
 
-        let arguments = [argument1Type, argument2Type, argument3Type, argument4Type]
-            .map {
-                String(describing: $0)
-            }
-            .map {
-                PropInfo(
-                    propertyType: .object,
-                    propertyName: StringName($0),
-                    className: StringName(className),
-                    hint: .objectId,
-                    hintStr: GString($0),
-                    usage: .default
-                )
-            }
+        let arguments = [
+            PropInfo(propertyType: argument1Type, propertyName: .init(argument1Name ?? "arg1")),
+            PropInfo(propertyType: argument2Type, propertyName: .init(argument2Name ?? "arg2")),
+            PropInfo(propertyType: argument3Type, propertyName: .init(argument3Name ?? "arg3")),
+            PropInfo(propertyType: argument4Type, propertyName: .init(argument4Name ?? "arg4")),
+        ]
 
         ClassInfo<Source>(name: StringName(className)).registerSignal(
             name: name,
