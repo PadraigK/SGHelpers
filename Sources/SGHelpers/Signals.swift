@@ -42,15 +42,14 @@ public struct SignalWith1Argument<Argument: VariantConvertible> {
         classType: Source.Type
     ) {
         name = StringName(signalName)
-        let className = String(describing: classType)
 
-        let arguments = [
-            PropInfo(propertyType: Argument.self, propertyName: .init(argumentName ?? "arg1")),
-        ]
-
-        ClassInfo<Source>(name: StringName(className)).registerSignal(
+        ClassInfo<Source>(
+            name: StringName(String(describing: classType))
+        ).registerSignal(
             name: name,
-            arguments: arguments
+            arguments: [
+                PropInfo(propertyType: Argument.self, propertyName: .init(argumentName ?? "arg1")),
+            ]
         )
     }
 }
@@ -68,16 +67,15 @@ public struct SignalWith2Arguments<
         classType: Source.Type
     ) {
         name = StringName(signalName)
-        let className = String(describing: classType)
 
-        let arguments = [
-            PropInfo(propertyType: Argument1.self, propertyName: .init(argument1Name ?? "arg1")),
-            PropInfo(propertyType: Argument2.self, propertyName: .init(argument2Name ?? "arg2")),
-        ]
-
-        ClassInfo<Source>(name: StringName(className)).registerSignal(
+        ClassInfo<Source>(
+            name: StringName(String(describing: classType))
+        ).registerSignal(
             name: name,
-            arguments: arguments
+            arguments: [
+                PropInfo(propertyType: Argument1.self, propertyName: .init(argument1Name ?? "arg1")),
+                PropInfo(propertyType: Argument2.self, propertyName: .init(argument2Name ?? "arg2")),
+            ]
         )
     }
 }
@@ -97,17 +95,16 @@ public struct SignalWith3Arguments<
         classType: Source.Type
     ) {
         name = StringName(signalName)
-        let className = String(describing: classType)
 
-        let arguments = [
-            PropInfo(propertyType: Argument1.self, propertyName: .init(argument1Name ?? "arg1")),
-            PropInfo(propertyType: Argument2.self, propertyName: .init(argument2Name ?? "arg2")),
-            PropInfo(propertyType: Argument3.self, propertyName: .init(argument3Name ?? "arg3")),
-        ]
-
-        ClassInfo<Source>(name: StringName(className)).registerSignal(
+        ClassInfo<Source>(
+            name: StringName(String(describing: classType))
+        ).registerSignal(
             name: name,
-            arguments: arguments
+            arguments: [
+                PropInfo(propertyType: Argument1.self, propertyName: .init(argument1Name ?? "arg1")),
+                PropInfo(propertyType: Argument2.self, propertyName: .init(argument2Name ?? "arg2")),
+                PropInfo(propertyType: Argument3.self, propertyName: .init(argument3Name ?? "arg3")),
+            ]
         )
     }
 }
@@ -129,18 +126,17 @@ public struct SignalWith4Arguments<
         classType: Source.Type
     ) {
         name = StringName(signalName)
-        let className = String(describing: classType)
 
-        let arguments = [
-            PropInfo(propertyType: Argument1.self, propertyName: .init(argument1Name ?? "arg1")),
-            PropInfo(propertyType: Argument2.self, propertyName: .init(argument2Name ?? "arg2")),
-            PropInfo(propertyType: Argument3.self, propertyName: .init(argument3Name ?? "arg3")),
-            PropInfo(propertyType: Argument4.self, propertyName: .init(argument4Name ?? "arg4")),
-        ]
-
-        ClassInfo<Source>(name: StringName(className)).registerSignal(
+        ClassInfo<Source>(
+            name: StringName(String(describing: classType))
+        ).registerSignal(
             name: name,
-            arguments: arguments
+            arguments: [
+                PropInfo(propertyType: Argument1.self, propertyName: .init(argument1Name ?? "arg1")),
+                PropInfo(propertyType: Argument2.self, propertyName: .init(argument2Name ?? "arg2")),
+                PropInfo(propertyType: Argument3.self, propertyName: .init(argument3Name ?? "arg3")),
+                PropInfo(propertyType: Argument4.self, propertyName: .init(argument4Name ?? "arg4")),
+            ]
         )
     }
 }
