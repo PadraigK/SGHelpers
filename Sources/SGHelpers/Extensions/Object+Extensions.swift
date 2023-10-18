@@ -12,7 +12,7 @@ public extension PropertyName {
 }
 
 public extension Object {
-    func setDeferred(property: PropertyName, value: some VariantConvertible) {
+    func setDeferred(property: PropertyName, value: some GodotVariant) {
         setDeferred(property: property.rawValue, value: value.toVariant())
     }
 }
