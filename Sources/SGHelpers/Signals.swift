@@ -35,7 +35,6 @@ extension PropInfo {
 
 public struct SignalWith1Argument<Argument: VariantConvertible> {
     let name: StringName
-    let argumentType: Argument.Type
 
     public init<Source: SwiftGodot.Object>(
         _ signalName: String,
@@ -43,11 +42,10 @@ public struct SignalWith1Argument<Argument: VariantConvertible> {
         classType: Source.Type
     ) {
         name = StringName(signalName)
-        argumentType = Argument.self
         let className = String(describing: classType)
 
         let arguments = [
-            PropInfo(propertyType: argumentType, propertyName: .init(argumentName ?? "arg1")),
+            PropInfo(propertyType: Argument.self, propertyName: .init(argumentName ?? "arg1")),
         ]
 
         ClassInfo<Source>(name: StringName(className)).registerSignal(
@@ -62,8 +60,6 @@ public struct SignalWith2Arguments<
     Argument2: VariantConvertible
 > {
     let name: StringName
-    let argument1Type: Argument1.Type
-    let argument2Type: Argument2.Type
 
     public init<Source: SwiftGodot.Object>(
         _ signalName: String,
@@ -72,13 +68,11 @@ public struct SignalWith2Arguments<
         classType: Source.Type
     ) {
         name = StringName(signalName)
-        argument1Type = Argument1.self
-        argument2Type = Argument2.self
         let className = String(describing: classType)
 
         let arguments = [
-            PropInfo(propertyType: argument1Type, propertyName: .init(argument1Name ?? "arg1")),
-            PropInfo(propertyType: argument2Type, propertyName: .init(argument2Name ?? "arg2")),
+            PropInfo(propertyType: Argument1.self, propertyName: .init(argument1Name ?? "arg1")),
+            PropInfo(propertyType: Argument2.self, propertyName: .init(argument2Name ?? "arg2")),
         ]
 
         ClassInfo<Source>(name: StringName(className)).registerSignal(
@@ -94,9 +88,6 @@ public struct SignalWith3Arguments<
     Argument3: VariantConvertible
 > {
     let name: StringName
-    let argument1Type: Argument1.Type
-    let argument2Type: Argument2.Type
-    let argument3Type: Argument3.Type
 
     public init<Source: SwiftGodot.Object>(
         _ signalName: String,
@@ -106,15 +97,12 @@ public struct SignalWith3Arguments<
         classType: Source.Type
     ) {
         name = StringName(signalName)
-        argument1Type = Argument1.self
-        argument2Type = Argument2.self
-        argument3Type = Argument3.self
         let className = String(describing: classType)
 
         let arguments = [
-            PropInfo(propertyType: argument1Type, propertyName: .init(argument1Name ?? "arg1")),
-            PropInfo(propertyType: argument2Type, propertyName: .init(argument2Name ?? "arg2")),
-            PropInfo(propertyType: argument3Type, propertyName: .init(argument3Name ?? "arg3")),
+            PropInfo(propertyType: Argument1.self, propertyName: .init(argument1Name ?? "arg1")),
+            PropInfo(propertyType: Argument2.self, propertyName: .init(argument2Name ?? "arg2")),
+            PropInfo(propertyType: Argument3.self, propertyName: .init(argument3Name ?? "arg3")),
         ]
 
         ClassInfo<Source>(name: StringName(className)).registerSignal(
@@ -131,10 +119,6 @@ public struct SignalWith4Arguments<
     Argument4: VariantConvertible
 > {
     let name: StringName
-    let argument1Type: Argument1.Type
-    let argument2Type: Argument2.Type
-    let argument3Type: Argument3.Type
-    let argument4Type: Argument4.Type
 
     public init<Source: SwiftGodot.Object>(
         _ signalName: String,
@@ -145,17 +129,13 @@ public struct SignalWith4Arguments<
         classType: Source.Type
     ) {
         name = StringName(signalName)
-        argument1Type = Argument1.self
-        argument2Type = Argument2.self
-        argument3Type = Argument3.self
-        argument4Type = Argument4.self
         let className = String(describing: classType)
 
         let arguments = [
-            PropInfo(propertyType: argument1Type, propertyName: .init(argument1Name ?? "arg1")),
-            PropInfo(propertyType: argument2Type, propertyName: .init(argument2Name ?? "arg2")),
-            PropInfo(propertyType: argument3Type, propertyName: .init(argument3Name ?? "arg3")),
-            PropInfo(propertyType: argument4Type, propertyName: .init(argument4Name ?? "arg4")),
+            PropInfo(propertyType: Argument1.self, propertyName: .init(argument1Name ?? "arg1")),
+            PropInfo(propertyType: Argument2.self, propertyName: .init(argument2Name ?? "arg2")),
+            PropInfo(propertyType: Argument3.self, propertyName: .init(argument3Name ?? "arg3")),
+            PropInfo(propertyType: Argument4.self, propertyName: .init(argument4Name ?? "arg4")),
         ]
 
         ClassInfo<Source>(name: StringName(className)).registerSignal(
