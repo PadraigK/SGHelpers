@@ -12,7 +12,7 @@ public extension PropertyName {
 }
 
 public extension Object {
-    func setDeferred(property: PropertyName, value: some VariantConvertible) {
-        setDeferred(property: property.rawValue, value: value.toVariant())
+    func setDeferred(property: PropertyName, value: some VariantStorable) {
+        setDeferred(property: property.rawValue, value: Variant(value))
     }
 }
